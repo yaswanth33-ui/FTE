@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTE</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   
+  <style>
+      /* Basic styles */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #f1f1f1;
+  padding: 20px 10px 8px 20px;
+}
+.logo-edge img{
+    width:40px;
+    height:40px;
+}
+.logo-edge>img {
+    border:1px solid black;
+    border-radius:50%;
+}
+.header-edge{
+    position:absolute ;
+    margin-left:42px;
+    top:20px;
+    width:300px;
+    height:40px;
+}
+h1 {
+  font-size: 2em;
+  margin: 0;
+  padding-left:25px;
+}
+.search-container {
+  position:absolute;
+  top:23px;
+  right:50px;
+  display: inline;
+}
+    
+.search-input {
+  width: 80px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius:20px;
+  transition: width 0.3s ease-in-out;
+}
+  #suggestions {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border: 1px solid #ccc;
+  z-index: 1;
+  display: none;
+}
+
+#suggestions li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+}
+
+#suggestions li:hover {
+  background-color: #eee;
+}
+
+
+.search-button {
+  position:absolute;
+  top: 3.5px;
+  right:6px;
+  padding: 8px ;
+  border:none;
+  border-radius:20px;
+  transition:transparent;
+  background-color:#fff;
+  cursor: pointer;
+  transition: all 0.3s ease-out-in;
+}
+
+.search-button:hover {
+  background-color: none;
+}
+
+.search-input:focus {
+  
+  width: 200px; 
+}
+
+.search-input:focus  {
+  left: calc(100% + 10px); /* Adjust padding as needed */
+}
+
+.container{
+    max-width:480px;
+    max-height:500px;
+    margin:auto;
+    background-color:#555;
+    border-radius:10px;
+}
+.main-menu{
+    overflow:hidden;
+    background-color:#333;
+    top:20px;
+    right:0;
+}
+.main-menu #mylinks{
+    display:none;
+}
+  #crossmark{
+  cursor:pointer;
+  position:absolute;
+  top:20px;
+  right:24px;
+  font-size:32px;
+  font-weight:10px;
+  display:none;
+}
+.main-menu a{
+    position:relative;
+    color:white;
+    text-decoration:none;
+    font-size:16px;
+    display:block ;
+    padding:14px 16px;
+}
+.main-menu a.icon{
+     font-size:32px;
+     font-weight:10px;
+     box-sizing:border-box ;
+    display:block;
+    color:black;
+    position:absolute ;
+    top:10px;
+    right:0;
+}
+.main-menu a:hover{
+    color:white;
+}
+.shape{
+    stroke-width:6px;
+    fill:transparent ;
+    color:#009FFD;
+    stroke-dasharray:80 400;
+    stroke-dashoffset:-220;
+    transition:1s all ease;
+}
+
+nav ul {
+  list-style: none;
+  padding-left: 280px;
+}
+
+nav li {
+  display: inline-block;
+  padding:20px 0 0 5px;
+
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+}
+
+main {
+  padding: 20px;
+}
+.slideshow-container {
+  max-width: 1000px;
+  height:400px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 25%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+
+/* Caption text */
+.text {
+  color: black;
+  font-size: 16px;
+  font-weight:20px;
+  padding: 5px 12px 12px 5px;
+  position: absolute;
+  top:205px;
+  width: 95%;
+  text-align: justify;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+  .mySlides> img{
+     backdrop-fliter:blur(5px);
+ 
+  }
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+  
+  /* news  container section*/
+ .news{
+   position:relative;
+   width:100%;
+   height:500px;
+   margin-top:30px;
+   border:1px solid black;
+ }
+  .news-head{
+    display:inline;
+  }
+  .news-head>i{
+    position:absolute;
+    top:20px;
+    left:10px;
+    font-size:22px;
+    color:black;
+  }
+  .news-head>h2{
+    position:absolute;
+    left:36px;
+    font-size:24px;
+  }
+    .news-article-container{
+      position:relative;
+      top:80px;
+      width:90%;
+      height:100px;
+      margin-left:16px;
+      border:1px solid black;
+    }
+  .article{
+    width:100%;
+    height:80px;
+    margin-top:20px;
+    display:flex;
+  }
+  .month {
+    display:inline-block;
+    border:1px solid black;
+    width:50px;
+    height:60px;
+    text-align:center;
+  }
+  .month>.p1{
+    font-size:12px;
+    border-bottom:1px solid black;
+    background-color:red;
+    color:white;
+    
+  }
+  .month>.p2{
+    font-size:18px;
+    font-weight:18px;
+.hero {
+  background-image: url("[image path]"); /* Replace with your hero image path */
+  background-size: cover;
+  background-position: center;
+  padding: 100px 0;
+  color: white;
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 2em;
+  margin-bottom: 20px;
+}
+
+.about {
+  padding: 40px;
+}
+
+#footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  margin-top:100px;
+  padding: 10px;
+}
+
+/* Responsiveness - You can use media queries to adjust styles for different screen sizes */
+
+
+
+  
+  </style>
+  
+</head>
+<body>
+  <header>
+  <div class="logo-edge">
+      <img src="http://www.sololearn.com/images/tree.jpg" alt="logo" >
+  </div>
+  <div class="container">
+     <div class="header-edge">
+         <h1>FTE</h1>
+    </div>
+       <div class="search-container">
+  <input type="text" class="search-input" id="mysearch" placeholder="Search" name ="search" value ="">
+  <ul id="suggestions"></ul>
+  <button class="search-button" onclick="search()">
+    <i class="fa fa-search"></i>
+  </button>
+</div>
+
+    <div class="main-menu">
+       <div id ="mylinks">
+           <a href="#">Home</a>
+           <a href="#">courses</a>
+           <a href="#">Student info</a>
+           <a href="http://mdKebBA9gOZo0nO:dSlqFj2fE1JOw85@localhost:30978/storage/emulated/0/fte-contact.html">contact us</a>
+         <p id ="mylinks1"></p>
+        </div>
+        <a href="javascript:void(0);" class="icon"  id ="hicon"onclick="openIcon()">
+         <i class="fa fa-bars"></i>
+         </a>
+     </div>
+      <div id="crossmark" style="display:none;" onclick="openIcon()">X</div>
+    </div>
+    <div>
+      <nav>
+        <ul>
+        <li> <a href="http://YKP8c5j4alEzKyd:JeGwBJZ4zWJRh1b@localhost:50110/storage/emulated/0/fte-login.html">Login</a></li>
+        <li><a  href="http://YKP8c5j4alEzKyd:JeGwBJZ4zWJRh1b@localhost:50110/storage/emulated/0/fte-register.html">Sign up</a> </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+  <h2>Contributions</h2>
+  <div class="slideshow-container">
+
+  <!-- Full-width images with number and caption text -->
+  <div class="mySlides">
+    <div class="numbertext">1 / 3</div>
+    <img src="/storage/emulated/0/Download/webuni-gh-pages/webuni-gh-pages/img/bg.jpg" style="width:100%; height:200px">
+    <div class="text">
+      <p> 
+        This image is  about the pen and pen is the important thing while come to writing.
+        All cars have the same properties, but the property values differ from car to car.
+In a function definition, this refers to the "owner" of the function.
+
+In the example above, this is the person object that "owns" the fullName function.
+
+In other words, this.firstName means the firstName property of this object.
+All cars have the same methods, but the methods are performed at different times.
+      </p>
+    </div>
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">2 / 3</div>
+    <img src="/storage/emulated/0/AMC_ZipExtractor/Decompressed/website -free/webuni-gh-pages/img/signup-bg.jpg" style="width:100%; height:200px">
+    <div class="text">Caption Two</div>
+  </div>
+
+  <div class="mySlides">
+    <div class="numbertext">3 / 3</div>
+    <img src="/storage/emulated/0/AMC_ZipExtractor/Decompressed/website -free/webuni-gh-pages/img/page-bg/1.jpg" style="width:100%; height:200px">
+
+    <div class="text">Caption Three</div>
+  </div>
+   <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+<br>
+
+<!-- The dots/circles -->
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+</div>
+    <section class="tasks">
+      <h2>Tasks</h2>
+      <button id = "addtask">Add task</button>
+      <ul id ="task">
+        
+      </ul>
+      </section>
+    <section class="about">
+      </section>
+  </main>
+  
+  <footer id ="footer">
+    <p>&copy; FTE - 2004</p>
+  </footer>
+  
+  <script>
+  
+  // Search suggestions and results
+const searchInput = document.getElementById("mysearch");
+const suggestionsList = document.getElementById("suggestions");
+
+const searchTerms = [
+  // Replace with your list of search terms
+  "programming languages",
+  "web development",
+  "machine learning",
+  "artificial intelligence",
+  "databases",
+  "computer science",
+  "contributions"
+];
+
+function showSuggestions(searchTerm) {
+  const filteredTerms = searchTerms.filter(term => term.toLowerCase().startsWith(searchTerm.toLowerCase()));
+  suggestionsList.innerHTML = ""; // Clear previous suggestions
+
+  if (searchTerm.length > 0 && filteredTerms.length > 0) {
+    suggestionsList.style.display = "block";
+    filteredTerms.forEach(term => {
+      const listItem = document.createElement("li");
+      listItem.innerText = term;
+      listItem.addEventListener("click", () => {
+        searchInput.value = term;
+        search(); // Perform search action
+      });
+      suggestionsList.appendChild(listItem);
+    });
+  } else {
+    suggestionsList.style.display = "none";
+  }
+}
+
+searchInput.addEventListener("keyup", () => {
+  showSuggestions(searchInput.value);
+});
+
+// Search results (replace with your actual search logic)
+function search() {
+  const searchTerm = searchInput.value;
+  suggestionsList.style.display = "none"; // Hide suggestions after search
+  searchInput.value = "";
+  // Simulate search results
+  const results = `Search results for "${searchTerm}":`;
+  alert(results);
+
+  // You can replace the alert with actual result display logic
+  // For example, redirect to a search results page or update content on the page
+}
+
+  
+  {
+           function openIcon(){
+    var x= document.getElementById("mylinks");
+    var i = document.getElementById("hicon");
+     var c= document.getElementById("crossmark");
+    if (x.style.display === "block"){
+        x.style.display="none";
+        i.style.color="black";
+        c.style.display="none";
+    } else {
+        x.style.display ="block";
+        i.style.color="#f1f1f1";
+        c.style.display="block";
+        c.style.marginTop="2px";
+    }
+}
+        
+  }
+
+  
+  {
+var slideIndex = 1;
+showSlides(slideIndex )
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+function showSlides(n) {
+  var i;
+  var slides =document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (slides.length === 0) {
+    return; // Exit the function early
+  }
+  if (n > slides.length) { slideIndex = 1; }    
+  if (n < 1) { slideIndex = slides.length; }
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].classList.remove("active");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].classList.add("active");
+}
+  }
+  document.addEventListener("DOMContentLoaded",() => {
+  document.querySelector("#addtask").onclick=  () => {
+     document.createElement("label");
+  };
+  });
+  </script>
+</body>
+</html>
